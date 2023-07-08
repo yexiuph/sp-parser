@@ -23,10 +23,10 @@ export class SerialportService implements OnModuleInit {
     parser.on('data', (data) => {
       const newData = data.substring(6);
       if (data.startsWith('DATA01')) {
-        Logger.log(`Data from Sensor 1 : ${newData}`);
+        Logger.log(`Data from Sensor 1 : ${newData}cm`);
         this.mqtt.mqttPublish('control/outbound1', newData);
       } else if (data.startsWith('DATA02')) {
-        Logger.log(`Data from Sensor 2 : ${newData}`);
+        Logger.log(`Data from Sensor 2 : ${newData}cm`);
         this.mqtt.mqttPublish('control/outbound2', newData);
       }
     });
