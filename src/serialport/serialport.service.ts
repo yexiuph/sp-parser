@@ -16,12 +16,12 @@ export class SerialportService implements OnModuleInit {
     const parser = new this.readLineParser();
     this.path.pipe(parser);
 
-    parser.on('open', async () => {
+    parser.on('open', () => {
       Logger.log('Connecting..');
     });
 
-    parser.on('data', async (data) => {
-      const newData = data.substring(5);
+    parser.on('data', (data) => {
+      const newData = data.substring(6);
       if (data.startsWith('DATA01')) {
         Logger.log(`Data from Sensor 1 : ${newData}`);
         this.mqtt.mqttPublish('control/outbound1', newData);
