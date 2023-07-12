@@ -21,7 +21,6 @@ export class SerialportService implements OnModuleInit {
     });
 
     parser.on('data', (data) => {
-      console.log(data);
       if (data === 'START') {
         Logger.log(`Start button pressed.`);
         this.mqtt.mqttPublish('control/button1', data);
