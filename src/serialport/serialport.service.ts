@@ -23,11 +23,11 @@ export class SerialportService implements OnModuleInit {
     parser.on('data', (data) => {
       if (data.startsWith('START')) {
         Logger.log(`Start button pressed.`);
-        this.mqtt.mqttPublish('control/button1', 0x101);
+        this.mqtt.mqttPublish('control/button1', '257');
       }
       if (data.startsWith('RESET')) {
         Logger.log(`Reset button pressed.`);
-        this.mqtt.mqttPublish('control/button2', 0x102);
+        this.mqtt.mqttPublish('control/button2', '258');
       }
       const newData = data.substring(6);
       if (data.startsWith('DATA01')) {
