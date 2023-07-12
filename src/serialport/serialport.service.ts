@@ -21,7 +21,7 @@ export class SerialportService implements OnModuleInit {
     });
 
     parser.on('data', (data) => {
-      const newData = data.substring(6);
+      console.log(data);
       if (data == 'START') {
         Logger.log(`Start button pressed.`);
         this.mqtt.mqttPublish('control/button1', data);
@@ -30,6 +30,7 @@ export class SerialportService implements OnModuleInit {
         Logger.log(`Reset button pressed.`);
         this.mqtt.mqttPublish('control/button2', data);
       }
+      const newData = data.substring(6);
       if (data.startsWith('DATA01')) {
         Logger.log(`Data from Sensor 1 : ${newData}`);
         this.mqtt.mqttPublish('control/outbound1', newData);
